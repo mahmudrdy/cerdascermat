@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lomba Cerdas Cermat - Kitab Kuning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+        
+        .card-hover:hover .icon-container {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .icon-container {
+            transition: all 0.4s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 50%, #581c87 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: backgroundScroll 20s linear infinite;
+        }
+        
+        @keyframes backgroundScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .gradient-card-1 {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+        }
+        
+        .gradient-card-2 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        }
+        
+        .gradient-card-3 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .gradient-card-4 {
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+            }
+        }
+        
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body class="h-screen gradient-bg flex items-center justify-center p-4 overflow-hidden">
+    <!-- Main Container -->
+    <div id="mainContainer" class="w-full max-w-6xl relative z-10">
+        
+        <!-- Selection Screen -->
+        <div id="selectionScreen" class="fade-in">
+            <!-- Header -->
+            <div class="text-center mb-6 float-animation">
+                <div class="inline-block mb-3">
+                    <div class="w-16 h-16 mx-auto bg-white/20 backdrop-blur-lg rounded-full flex items-center justify-center shadow-2xl">
+                        <i class="fas fa-book-quran text-3xl text-white"></i>
+                    </div>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-2xl">
+                    Lomba Cerdas Cermat
+                </h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-2xl">
+                    Metode Al-Fatih
+                </h1>
+                <div class="flex items-center justify-center gap-2 text-lg text-white/90 drop-shadow-lg">
+                    <i class="fas fa-mosque text-yellow-300"></i>
+                    <p>Pilih Pasal Kitab Kuning</p>
+                    <i class="fas fa-mosque text-yellow-300"></i>
+                </div>
+            </div>
+            
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+                <!-- Card Pasal 1 -->
+                <div onclick="showBab(1)" class="card-hover cursor-pointer gradient-card-1 rounded-2xl p-5 shadow-2xl shine-effect">
+                    <div class="text-center">
+                        <div class="icon-container w-14 h-14 mx-auto mb-3 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center">
+                            <i class="fas fa-person-praying text-3xl text-white"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">(فصل) شروط الوضوء عشرة </h2>
+                        <div class="h-0.5 w-12 bg-white/40 mx-auto mb-2 rounded-full"></div>
+                        <p class="text-white/90 text-base font-medium">Syarat Wudhu</p>
+                    </div>
+                </div>
+                
+                <!-- Card Pasal 2 -->
+                <div onclick="showBab(2)" class="card-hover cursor-pointer gradient-card-2 rounded-2xl p-5 shadow-2xl shine-effect">
+                    <div class="text-center">
+                        <div class="icon-container w-14 h-14 mx-auto mb-3 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center">
+                            <i class="fas fa-water text-3xl text-white"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">(فصل) الماء قليل وكثير</h2>
+                        <div class="h-0.5 w-12 bg-white/40 mx-auto mb-2 rounded-full"></div>
+                        <p class="text-white/90 text-base font-medium">Air sedikit dan banyak</p>
+                    </div>
+                </div>
+                
+                <!-- Card Pasal 3 -->
+                <div onclick="showBab(3)" class="card-hover cursor-pointer gradient-card-3 rounded-2xl p-5 shadow-2xl shine-effect">
+                    <div class="text-center">
+                        <div class="icon-container w-14 h-14 mx-auto mb-3 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center">
+                            <i class="fas fa-hand-holding-heart text-3xl text-white"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">(فصل) النّجاسات ثلاث </h2>
+                        <div class="h-0.5 w-12 bg-white/40 mx-auto mb-2 rounded-full"></div>
+                        <p class="text-white/90 text-base font-medium">Tiga Najis</p>
+                    </div>
+                </div>
+                
+                <!-- Card Pasal 4 -->
+                <div onclick="showBab(4)" class="card-hover cursor-pointer gradient-card-4 rounded-2xl p-5 shadow-2xl shine-effect">
+                    <div class="text-center">
+                        <div class="icon-container w-14 h-14 mx-auto mb-3 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center">
+                            <i class="fas fa-moon text-3xl text-white"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">(فصل) أقلّ الحيض </h2>
+                        <div class="h-0.5 w-12 bg-white/40 mx-auto mb-2 rounded-full"></div>
+                        <p class="text-white/90 text-base font-medium">Masa Haid Terpendek</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reading Screen -->
+        <div id="readingScreen" class="hidden h-full flex items-center justify-center">
+            <div class="slide-in glass-effect rounded-2xl shadow-2xl w-full h-[90vh] flex flex-col overflow-hidden">
+                <!-- Header with Back Button -->
+                <div class="flex items-center justify-between p-6 flex-shrink-0">
+                    <button onclick="goBack()" class="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-5 py-2.5 rounded-xl transition-all transform hover:scale-105 shadow-xl font-semibold text-sm">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Kembali</span>
+                    </button>
+                    <div class="pulse-glow bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-xl">
+                        <span id="babNumber" class="text-base font-bold"></span>
+                    </div>
+                </div>
+                
+                <!-- Content Area - Full Height -->
+                <div class="flex-1 flex flex-col px-6 pb-6 overflow-hidden">
+                    <!-- Title -->
+                    <div class="text-center pb-3 border-b-2 border-purple-600 flex-shrink-0">
+                        <div class="inline-block mb-2">
+                            <i id="babIcon" class="text-3xl text-purple-600"></i>
+                        </div>
+                        <h2 id="babTitle" class="text-xl font-bold text-purple-600 mb-1"></h2>
+                        <p class="text-gray-600 text-xs font-medium">Bacalah dengan Seksama</p>
+                    </div>
+                    
+                    <!-- Image Container - Takes remaining space -->
+                    <div class="flex-1 flex items-center justify-center py-4 overflow-hidden">
+                        <div id="imageContainer" class="w-full h-full bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl shadow-xl border-2 border-purple-200 overflow-hidden flex items-center justify-center">
+                            <img id="babImage" src="" alt="Gambar Bab" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    
+                    <!-- Action Button -->
+                    <div class="text-center flex-shrink-0 pt-3">
+                        <button onclick="goBack()" class="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 text-white px-8 py-2.5 rounded-xl text-sm font-bold transition-all transform hover:scale-105 shadow-2xl">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Selesai Membaca
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data untuk setiap pasal
+        const pasalData = {
+            1: {
+                title: "(فصل) شروط الوضوء عشرة ",
+                icon: "fas fa-person-praying",
+                image: "images/wudhuk.JPG"
+            },
+            2: {
+                title: "(فصل) الماء قليل وكثيرر",
+                icon: "fas fa-water",
+                image: "images/air.JPG"
+            },
+            3: {
+                title: "(فصل) النّجاسات ثلاث ",
+                icon: "fas fa-hand-holding-heart",
+                image: "images/najis.JPG"
+            },
+            4: {
+                title: "(فصل) أقلّ الحيض",
+                icon: "fas fa-moon",
+                image: "images/haid.JPG"
+            }
+        };
+        
+        function showBab(pasalNumber) {
+            // Hide selection screen
+            document.getElementById('selectionScreen').style.display = 'none';
+            
+            // Show reading screen
+            const readingScreen = document.getElementById('readingScreen');
+            readingScreen.classList.remove('hidden');
+            
+            // Update content
+            const data = pasalData[pasalNumber];
+            document.getElementById('babNumber').textContent = `Pasal ${pasalNumber}`;
+            document.getElementById('babTitle').textContent = data.title;
+            document.getElementById('babIcon').className = data.icon;
+            document.getElementById('babImage').src = data.image;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function goBack() {
+            // Hide reading screen
+            document.getElementById('readingScreen').classList.add('hidden');
+            
+            // Show selection screen
+            document.getElementById('selectionScreen').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
